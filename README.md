@@ -8,6 +8,7 @@ by Payton Miller
  
 ### Future Considerations:
  - This script could be tied to an API to assess if these Domains are available, and evaluate a heuristic "trustworthiness score" against a cost matrix to optimize the purchase of your domains. 
+ - Further consideration, this would require a rotating proxy to retrieve any amount of meaningful data from a single resource, or dynamic querying of multiple platforms simultaneously with contextual switching. Possible, but hard to implement in a "free method". 
 
 # RTLO and LTRO Generator
  - Insert a filename, and the file extension you would like to spoof.
