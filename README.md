@@ -21,3 +21,4 @@ by Payton Miller
  
 # Advanced Phishing Threats - Exploiting Modern Features.pptx 
  - Presentation Slides for SATX BSides 2021.
+ - Updated with Modern Techniques for WWHF Hackcast.
